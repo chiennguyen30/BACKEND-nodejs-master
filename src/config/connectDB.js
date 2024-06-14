@@ -1,10 +1,11 @@
 const { Sequelize } = require("sequelize");
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize("nvcit", "root", null, {
-  host: "127.0.0.1",
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, null, {
+  host: process.env.DB_HOST,
   dialect: "mysql",
   logging: false,
+  port: process.env.DB_PORT,
 });
 
 let connectDB = async () => {
