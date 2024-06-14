@@ -4,11 +4,7 @@ const { Sequelize } = require("sequelize");
 const sequelize = new Sequelize("nvcit", "root", null, {
   host: "127.0.0.1",
   dialect: "mysql",
-  port: 3306, // Cổng mặc định của MySQL
   logging: false,
-  dialectOptions: {
-    socketPath: "/xampp/mysql/mysql.sock",
-  },
 });
 
 let connectDB = async () => {
