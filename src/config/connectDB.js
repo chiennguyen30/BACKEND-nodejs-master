@@ -5,7 +5,6 @@ const sequelize = new Sequelize("nvcit", "root", null, {
   host: "localhost",
   dialect: "mysql",
   logging: false,
-  port: 3306,
 });
 
 let connectDB = async () => {
