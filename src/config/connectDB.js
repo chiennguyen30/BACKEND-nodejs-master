@@ -6,6 +6,7 @@ const sequelize = new Sequelize("nvcit", "root", null, {
   dialect: "mysql",
   logging: false,
 });
+//"sequelize": "^6.37.2",
 
 let connectDB = async () => {
   try {
