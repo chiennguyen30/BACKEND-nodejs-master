@@ -5,14 +5,7 @@ const sequelize = new Sequelize("nvcit", "root", null, {
   host: process.env.HOST,
   port: process.env.PORT || 3306,
   dialect: "mysql",
-
   logging: false,
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
 });
 
 let connectDB = async () => {
