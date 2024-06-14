@@ -6,9 +6,6 @@ const sequelize = new Sequelize("nvcit", "root", null, {
   dialect: "mysql",
   port: 3306, // your port
   logging: false,
-  dialectOptions: {
-    socketPath: "C:/xampp/mysql/mysql.sock",
-  },
 });
 
 let connectDB = async () => {
