@@ -18,7 +18,7 @@ viewEngine(app);
 initWebRoutes(app);
 
 connectDB();
-let port = process.env.PORT || 6969;
+let port = process.env.PORT;
 app.listen(port, () => {
   console.log("Server is running on http://localhost:" + port);
 });
