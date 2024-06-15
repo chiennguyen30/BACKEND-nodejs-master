@@ -1,10 +1,9 @@
 const { Sequelize } = require("sequelize");
-require("dotenv").config();
 
 const sequelize = new Sequelize("nvcit", "root", null, {
-  host: "localhost",
-  port: 3306,
+  host: "127.0.0.1",
   dialect: "mysql",
+  port: 3306,
   logging: false,
 });
 
