@@ -1,10 +1,18 @@
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
 
-const sequelize = new Sequelize("nvcit", "root", null, {
-  dialect: "mysql",
-  port: 3306,
-  host: "127.0.0.1",
+// const sequelize = new Sequelize("nvcit", "root", null, {
+//   dialect: "mysql",
+//   port: 3306,
+//   host: "127.0.0.1",
+//   logging: false,
+// });
+
+// Lấy thông tin từ biến môi trường
+const dbURL = process.env.DB_URL;
+
+const sequelize = new Sequelize(dbURL, {
+  dialect: "postgres",
   logging: false,
 });
 
