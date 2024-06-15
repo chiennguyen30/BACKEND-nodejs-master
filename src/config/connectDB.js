@@ -1,13 +1,16 @@
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
 
-const sequelize = new Sequelize(process.env.DB_URL, "root", null, {
-  // host: "127.0.0.1",
-  // dialect: "mysql",
-  // port: 3306,
+// const sequelize = new Sequelize('nvcit', "root", null, {
+//   // host: "127.0.0.1",
+//   // dialect: "mysql",
+//   // port: 3306,
+//   logging: false,
+// });
+
+const sequelize = new Sequelize(process.env.DB_URL, {
+  dialect: "postgres",
   logging: false,
-  dialect: "sqlite",
-  storage: "./src/database/database.sqlite",
 });
 
 let connectDB = async () => {
