@@ -12,7 +12,7 @@ require("dotenv").config();
 const dbURL = process.env.DB_URL;
 
 const sequelize = new Sequelize(dbURL, {
-  dialect: "postgres",
+  dialect: "postgres", //connect db bang store postgres tren vercel
   logging: false,
 });
 
