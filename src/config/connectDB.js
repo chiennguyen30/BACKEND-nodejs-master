@@ -11,7 +11,7 @@ require("dotenv").config();
 // Lấy thông tin từ biến môi trường
 const dbURL = process.env.DB_URL;
 
-const sequelize = new Sequelize(dbURL, {
+const sequelize = new Sequelize(dbURL, "root", null, {
   dialect: "postgres", //connect db bang store postgres tren vercel
   logging: false,
 });
