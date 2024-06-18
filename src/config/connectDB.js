@@ -8,12 +8,19 @@ require("dotenv").config();
 //   logging: false,
 // });
 
-// Lấy thông tin từ biến môi trường
 const dbURL = process.env.DB_URL;
 
-const sequelize = new Sequelize(dbURL, "root", null, {
-  dialect: "postgres", //connect db bang store postgres tren vercel
+const sequelize = new Sequelize(dbURL, {
+  dialect: "postgres",
   logging: false,
+  dialectOptions: {
+    // Uncomment and use these options if your setup requires them
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+  port: 5432, // Change to 5432 for PostgreSQL
 });
 
 let connectDB = async () => {
