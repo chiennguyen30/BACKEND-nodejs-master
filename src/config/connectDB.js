@@ -10,19 +10,11 @@ require("dotenv").config();
 
 const dbURL = process.env.DB_URL;
 
-const sequelize = new Sequelize(dbURL, {
-  dialect: "postgres",
+const sequelize = new Sequelize("nvcit", "root", null, {
+  host: "localhost",
+  dialect: "mysql",
   logging: false,
-  dialectOptions: {
-    // Uncomment and use these options if your setup requires them
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
-  port: 5432, // Change to 5432 for PostgreSQL
 });
-
 let connectDB = async () => {
   try {
     await sequelize.authenticate();
