@@ -4,7 +4,7 @@ const { toDefaultValue } = require("sequelize/lib/utils");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Doctor_infor", {
+    await queryInterface.createTable("Doctor_Infor", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -61,6 +61,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Doctor_infor");
+    await queryInterface.dropTable("Doctor_Infor");
   },
 };
