@@ -10,11 +10,18 @@ require("dotenv").config();
 
 const dbURL = process.env.DB_URL;
 
-const sequelize = new Sequelize("nvcit", "root", null, {
-  host: "localhost",
-  dialect: "mysql",
+const sequelize = new Sequelize("nvcit_j4e9", "root", "ztZfoGza5R2CiwogKOGHFcpf28I0tVto", {
+  host: "dpg-cprvp02j1k6c738eu2fg-a.singapore-postgres.render.com",
+  dialect: "postgres",
   logging: false,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
 });
+
 let connectDB = async () => {
   try {
     await sequelize.authenticate();

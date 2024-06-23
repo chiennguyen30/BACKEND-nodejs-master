@@ -1,16 +1,21 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "nvcIt",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
+    "password": "ztZfoGza5R2CiwogKOGHFcpf28I0tVto",
+    "database": "nvcit_j4e9",
+    "host": "dpg-cprvp02j1k6c738eu2fg-a.singapore-postgres.render.com",
+    "dialect": "postgres",
     "logging": false,
     "query":{
       "raw": true 
     },
-    "timezone": "+07:00"
-
+    "timezone": "+07:00",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   },
   "test": {
     "username": "root",
