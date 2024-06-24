@@ -24,8 +24,8 @@ let getTopDoctorHome = (limitInput) => {
         },
         // Bao gồm các bảng liên quan và chỉ lựa chọn một số thuộc tính cụ thể
         include: [
-          { model: db.Allcode, as: "positionData", attributes: ["valueEn", "valueVi"] },
-          { model: db.Allcode, as: "genderData", attributes: ["valueEn", "valueVi"] },
+          { model: db.Allcode, as: "positionData", attributes: ["valueEN", "valueVI"] },
+          { model: db.Allcode, as: "genderData", attributes: ["valueEN", "valueVI"] },
         ],
         // Trả về kết quả dưới dạng mảng các đối tượng JSON
         raw: true,
@@ -187,14 +187,14 @@ let getDetailDoctorByIdServices = (inputId) => {
           attributes: { exclude: ["password"] },
           include: [
             { model: db.Markdown, attributes: ["description", "contentHTML", "contentMarkdown"] },
-            { model: db.Allcode, as: "positionData", attributes: ["valueEn", "valueVi"] },
+            { model: db.Allcode, as: "positionData", attributes: ["valueEN", "valueVI"] },
             {
               model: db.Doctor_Infor,
               attributes: { exclude: ["id", "doctorId"] },
               include: [
-                { model: db.Allcode, as: "priceTypeData", attributes: ["valueEn", "valueVi"] },
-                { model: db.Allcode, as: "provinceTypeData", attributes: ["valueEn", "valueVi"] },
-                { model: db.Allcode, as: "paymentTypeData", attributes: ["valueEn", "valueVi"] },
+                { model: db.Allcode, as: "priceTypeData", attributes: ["valueEN", "valueVI"] },
+                { model: db.Allcode, as: "provinceTypeData", attributes: ["valueEN", "valueVI"] },
+                { model: db.Allcode, as: "paymentTypeData", attributes: ["valueEN", "valueVI"] },
               ],
             },
           ],
@@ -267,12 +267,13 @@ let getScheduleByDateServices = (doctorId, date) => {
         let data = await db.Schedule.findAll({
           where: { doctorId, date },
           include: [
-            { model: db.Allcode, as: "timeTypeData", attributes: ["valueEn", "valueVi"] },
-            { model: db.User, as: "doctorData", attributes: ["firstName", "LastName"] },
+            { model: db.Allcode, as: "timeTypeData", attributes: ["valueEN", "valueVI"] },
+            { model: db.User, as: "doctorData" },
           ],
           raw: false,
           nest: true,
         });
+
         if (!data) data = [];
         resolve({
           errCode: 0,
@@ -280,6 +281,7 @@ let getScheduleByDateServices = (doctorId, date) => {
         });
       }
     } catch (error) {
+      console.error("Error in getScheduleByDateServices: ", error);
       reject(error);
     }
   });
@@ -297,9 +299,9 @@ let getExtraInforDoctorByIdServices = (doctorId) => {
           where: { doctorId },
           attributes: { exclude: ["id", "doctorId"] },
           include: [
-            { model: db.Allcode, as: "priceTypeData", attributes: ["valueEn", "valueVi"] },
-            { model: db.Allcode, as: "provinceTypeData", attributes: ["valueEn", "valueVi"] },
-            { model: db.Allcode, as: "paymentTypeData", attributes: ["valueEn", "valueVi"] },
+            { model: db.Allcode, as: "priceTypeData", attributes: ["valueEN", "valueVI"] },
+            { model: db.Allcode, as: "provinceTypeData", attributes: ["valueEN", "valueVI"] },
+            { model: db.Allcode, as: "paymentTypeData", attributes: ["valueEN", "valueVI"] },
           ],
           raw: false,
           nest: true,
@@ -329,14 +331,14 @@ let getProfileDoctorByIdServices = (inputId) => {
           attributes: { exclude: ["password"] },
           include: [
             { model: db.Markdown, attributes: ["description", "contentHTML", "contentMarkdown"] },
-            { model: db.Allcode, as: "positionData", attributes: ["valueEn", "valueVi"] },
+            { model: db.Allcode, as: "positionData", attributes: ["valueEN", "valueVI"] },
             {
               model: db.Doctor_Infor,
               attributes: { exclude: ["id", "doctorId"] },
               include: [
-                { model: db.Allcode, as: "priceTypeData", attributes: ["valueEn", "valueVi"] },
-                { model: db.Allcode, as: "provinceTypeData", attributes: ["valueEn", "valueVi"] },
-                { model: db.Allcode, as: "paymentTypeData", attributes: ["valueEn", "valueVi"] },
+                { model: db.Allcode, as: "priceTypeData", attributes: ["valueEN", "valueVI"] },
+                { model: db.Allcode, as: "provinceTypeData", attributes: ["valueEN", "valueVI"] },
+                { model: db.Allcode, as: "paymentTypeData", attributes: ["valueEN", "valueVI"] },
               ],
             },
           ],
@@ -378,14 +380,14 @@ let getListPatientForDoctorServices = (doctorId, date) => {
                 {
                   model: db.Allcode,
                   as: "genderData",
-                  attributes: ["valueEn", "valueVi"],
+                  attributes: ["valueEN", "valueVI"],
                 },
               ],
             },
             {
               model: db.Allcode,
               as: "timeTypeDataPatient",
-              attributes: ["valueEn", "valueVi"],
+              attributes: ["valueEN", "valueVI"],
             },
           ],
           raw: false,
@@ -429,7 +431,7 @@ let sendRemedyServices = (data) => {
         }
 
         // send email remedy
-        await emailServices.sendAttachment(data);
+        // await emailServices.sendAttachment(data);
 
         resolve({
           errCode: 0,
